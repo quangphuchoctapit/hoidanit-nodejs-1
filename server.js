@@ -1,14 +1,23 @@
-const http = require('http');
+const express = require('express')
+const path = require('path')
+require('dotenv').config()
+console.log('>>check env: ', process.env)
 
-const hostname = '127.0.0.1';
-const port = 3001;
+let app = express()
+let port = process.env.PORT || 8888
+const hostname = process.env.HOST_NAME
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World');
-});
+app.set('views', path.join(__dirname, './src/views'))
+app.set('view engine', 'ejs')
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port} ok/`);
-});
+app.get('/', (req, res) => {
+  res.send('Welcome World')
+})
+
+app.get('/sample', (req, res) => {
+  res.render('sample.ejs')
+})
+
+app.listen(port, hostname, () => {
+  console.log(`listening on port: ${port}`)
+})
