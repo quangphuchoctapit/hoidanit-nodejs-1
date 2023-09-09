@@ -1,6 +1,15 @@
+const connection = require('../config/database')
 
 const getHomepage = (req, res) => {
-    res.send('Welcome World')
+    let users = []
+    connection.query(
+        'select * from Users u',
+        function (err, results, fields) {
+            console.log('>>>results=', results)
+            users = results
+            res.send(JSON.stringify(users))
+        },
+    )
 }
 const getSample = (req, res) => {
     res.render('sample.ejs')
