@@ -51,17 +51,6 @@
                 <th>City</th>
                 <th>Actions</th>
             </tr>
-            <tr>
-                <td>Peter</td>
-                <td>Griffin</td>
-                <td>$100</td>
-                <td>$100</td>
-                <td>
-                    <button>Edit</button>
-                    <button>Delete</button>
-                </td>
-
-            </tr>
             <% listUsers.forEach(function(user) { %>
                 <tr>
                     <td>
@@ -77,7 +66,7 @@
                         <%= user.city %>
                     </td>
                     <td>
-                        <button>Edit</button>
+                        <a href="/update/<%= user.id %>">Edit</a>
                         <button>Delete</button>
                     </td>
 
